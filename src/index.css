@@ -1,0 +1,9 @@
+:root {
+    --Navbar_BackgroundColor: #3B3C37; 
+    --Navbar_Height: 50px;
+    --ColoredText: #8EC9E6;
+}
+
+body {
+    margin: 0;
+}

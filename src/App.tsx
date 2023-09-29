@@ -1,9 +1,10 @@
-import Navbar from "./components/navbar";
+import Layout from "./layout/layout";
+import { ReactFunction } from "./types";
 
-export default function App() {
+export default function App(): ReactFunction {
   return (
-    <>
-    <Navbar/>
-    </>
+    <Layout>
+      XD
+    </Layout>
   )
 }
