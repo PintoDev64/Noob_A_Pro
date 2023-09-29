@@ -1,4 +1,4 @@
-import Layout from "./layout/layout";
+import Layout from "./layout";
 import { ReactFunction } from "./types";
 
 export default function App(): ReactFunction {
