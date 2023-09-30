@@ -10,8 +10,8 @@ export default function Layout({ children }: FunctionalProps): ReactFunction {
     return (
         <>
             <Navbar />
-            {children}
             <Sidebar />
+            {children}
         </>
     )
 }

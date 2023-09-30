@@ -6,11 +6,9 @@ export default function Sidebar(): ReactFunction {
         <aside className="Sidebar">
             <div className="SidebarTop ZnoruxIcon">
                 <picture className="ZnoruxIcon-pic">
-                    <img src={ZnoruxIcon} className="ZnoruxIcon-img" alt="Znorux" width={50} height={50}/>
+                    <img src={ZnoruxIcon} className="ZnoruxIcon-img" alt="Znorux" width={40} height={40}/>
                 </picture>
             </div>
-            <hr className="SidebarSeparator"/>
-            
         </aside>
     )
 }

@@ -1,3 +1,4 @@
+/* Navbar */
 .NavbarMain {
     background-repeat: repeat-x;
     background-color: var(--Navbar_BackgroundColor);
@@ -45,6 +46,31 @@
     transform: translateX(-50%);
     position: absolute;
     left: 50%;
+}
+
+/* SideBar */
+
+.Sidebar {
+    position: absolute;
+    top: 0;    
+    right: 0;
+    width: 200px;
+    height: 100vh;
+    background-color: #00000090;
+    transform: translateX(75%);
+    transition: .2s;
+}
+
+.Sidebar:hover {
+    transform: translateX(0px);
+    transition: .2s;
+}
+
+.SidebarTop {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    margin: 0 5px;
 }
 
 /* Efects Select */
