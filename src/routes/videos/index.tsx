@@ -6,7 +6,7 @@ import { YoutubeAPI } from "../../services";
 // Style
 import './style.css'
 
-export function Videos(): ReactFunction {
+export default function Videos(): ReactFunction {
 
     const ZnoruxVideos = YoutubeAPI();
     return (

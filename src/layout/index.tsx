@@ -1,17 +1,17 @@
 // Types
 import Navbar from "../components/navbar";
 import Sidebar from "../components/sidebar";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ReactFunction } from "../types";
 
 // Styles
 import './style.css'
-import { Videos } from "../routes/videos";
+import Videos from "../routes/videos";
 import Home from "../routes/home";
 
 export default function Layout(): ReactFunction {
 
-    const Enrouter = createBrowserRouter([
+    /* const Enrouter = createBrowserRouter([
         {
             path: '/',
             element: <Home />
@@ -20,13 +20,18 @@ export default function Layout(): ReactFunction {
             path: '/videos',
             element: <Videos />
         }
-    ])
+    ]) */
 
     return (
         <>
             <Navbar />
             <div className="Pages">
-                <RouterProvider router={Enrouter} />
+                <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={<Home />}/>
+                    <Route path="/videos" element={<Videos />}/>
+                </Routes>
+                </BrowserRouter>
             </div>
             <Sidebar />
         </>
