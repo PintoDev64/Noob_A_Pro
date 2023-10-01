@@ -73,6 +73,15 @@
     margin: 0 5px;
 }
 
+/* Pages */
+.Pages {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: calc(100vh - 50px);
+    overflow-y: auto;
+}
+
 /* Efects Select */
 
 h2.Select {
