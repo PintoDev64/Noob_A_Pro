@@ -31,11 +31,14 @@
     background-color: transparent;
     border: none;
     z-index: 1;
+    display: grid;
+    place-content: center;
 }
 
 .MainMenu,
 .NavbarMenu {
     display: flex;
+    z-index: 1;
 }
 
 .NavbarMenu {
@@ -43,6 +46,7 @@
 }
 
 .Menu-Buttons {
+    display: flex;
     transform: translateX(-50%);
     position: absolute;
     left: 50%;

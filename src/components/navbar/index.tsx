@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { HomeIcon, MusicIcon } from "../../assets/svg";
 import { ReactFunction } from "../../types";
 
@@ -6,10 +7,9 @@ export default function Navbar(): ReactFunction {
         <nav className="NavbarMain">
             <div className="NavbarBackground-Image" />
             <div className="MainMenu">
-                <button className="NavbarMain-buttons Home" onClick={() => console.log("Hola 1")
-                }>
+                <Link to='/' className="NavbarMain-buttons Home">
                     <HomeIcon />
-                </button>
+                </Link>
                 <button className="NavbarMain-buttons Music" onClick={() => console.log("Hola 2")
                 }>
                     <MusicIcon />
@@ -17,12 +17,12 @@ export default function Navbar(): ReactFunction {
             </div>
             <div className="NavbarMenu">
                 <div className="Menu-Buttons">
-                    <button className="NavbarMenu-buttons Videos">
+                    <Link to='/videos' className="NavbarMenu-buttons Videos">
                         <h2>VIDEOS</h2>
-                    </button>
-                    <button className="NavbarMenu-buttons SendDemo">
+                    </Link>
+                    <Link to='/form' className="NavbarMenu-buttons SendDemo">
                         <h2 className="Select">SUBIR DEMO</h2>
-                    </button>
+                    </Link>
                 </div>
             </div>
         </nav>
