@@ -1,0 +1,152 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const APIResponce = await fetch("https://znoruxserver-zqbe-dev.fl0.io/uno");
+const ZnoruxVideos = await APIResponce.json();
+
+interface VideosData {
+    duration_formatted: string,
+    thumbnail: {
+        url: string
+    },
+    title: string
+}
+---
+
+<Layout title="Nobb a Pro | Videos">
+    <div id="VideosBackground">
+        {
+            ZnoruxVideos.videos
+                .reverse()
+                .map(({ duration_formatted, thumbnail, title }: VideosData) => (
+                    <div class="video">
+                        <img
+                            src={thumbnail.url}
+                            alt={title}
+                            width={220}
+                            height={124}
+                        />
+                        <h5>{title}</h5>
+                        <span>{duration_formatted}</span>
+                    </div>
+                ))
+        }
+        <div id="VideoInformation" class="VideoInformation">
+            <h1>Hola mundo</h1>
+        </div>
+    </div>
+</Layout>
+
+<script>
+    const videosBackground = document.getElementById("VideosBackground");
+    const Video = document.querySelectorAll(".video");
+    const VideoSnippet = document.getElementById("VideoInformation");
+
+    let posX, posY;
+
+    const onEnter = (ev: any) => {
+        posX = ev.clientX;
+        posY = ev.clientY;
+        if (VideoSnippet !== null && videosBackground !== null) {
+            VideoSnippet.style.display = "block";
+            if (
+                posX + VideoSnippet.clientWidth + 30 <
+                videosBackground.clientWidth
+            ) {
+                VideoSnippet.style.left = `${posX}px`;
+                VideoSnippet.style.top = `${posY}px`;
+                VideoSnippet.style.transform = `translate(15%, -100%)`;
+            } else {
+                VideoSnippet.style.left = `${posX}px`;
+                VideoSnippet.style.top = `${posY}px`;
+                VideoSnippet.style.transform = `translate(-100%, -100%)`;
+            }
+        }
+    };
+
+    const onLeave = () => {
+        if (VideoSnippet !== null) VideoSnippet.style.display = "none";
+    };
+
+    Video.forEach((video) => {
+        video.addEventListener("mousemove", onEnter);
+    });
+
+    Video.forEach((video) => {
+        video.addEventListener("mouseout", onLeave);
+    });
+</script>
+
+<style>
+    #VideosBackground {
+        backdrop-filter: blur(15px);
+        padding: 15px 30px;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .video {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        width: 220px;
+        height: 180px;
+        margin: auto;
+        color: var(--ColoredBase);
+        border: none;
+        background: none;
+    }
+
+    .videoImage {
+        position: relative;
+        width: 220px;
+        height: 124px;
+        margin: 0 0 5px 0;
+    }
+
+    .video::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 220px;
+        height: calc(124px - 4px);
+        border-bottom: 5px solid #ff0000;
+    }
+
+    .video h5 {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 100%;
+        margin: 5px 0 0 0;
+        text-shadow: 0 0 5px #000000;
+    }
+
+    .video span {
+        width: 100%;
+        height: 1em;
+        margin: 0;
+        text-shadow: 0 0 5px #000000;
+    }
+
+    .VideoInformation {
+        position: absolute;
+        display: none;
+        width: 170px;
+        height: 80px;
+        background-color: #000000;
+        color: #ffffff;
+        animation: create 0.2s;
+    }
+
+    @keyframes create {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 100%;
+        }
+    }
+</style>
