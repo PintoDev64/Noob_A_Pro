@@ -3,6 +3,14 @@ import Layout from "../layouts/Layout.astro";
 
 const APIResponce = await fetch("https://znoruxserver-zqbe-dev.fl0.io/uno");
 const ZnoruxVideos = await APIResponce.json();
+
+interface VideosData {
+    duration_formatted: string,
+    thumbnail: {
+        url: string
+    },
+    title: string
+}
 ---
 
 <Layout title="Nobb a Pro | Videos">
@@ -10,7 +18,7 @@ const ZnoruxVideos = await APIResponce.json();
         {
             ZnoruxVideos.videos
                 .reverse()
-                .map(({ duration_formatted, thumbnail, title }) => (
+                .map(({ duration_formatted, thumbnail, title }: VideosData) => (
                     <div class="video">
                         <img
                             src={thumbnail.url}
@@ -36,26 +44,28 @@ const ZnoruxVideos = await APIResponce.json();
 
     let posX, posY;
 
-    const onEnter = (ev) => {
+    const onEnter = (ev: any) => {
         posX = ev.clientX;
         posY = ev.clientY;
-        VideoSnippet.style.display = "block";
-        if (((posX + VideoSnippet.clientWidth) + 30) < videosBackground.clientWidth
-        ) {
-            // console.log("pasa la ventana");
-            VideoSnippet.style.left = `${posX}px`;
-            VideoSnippet.style.top = `${posY}px`;
-            VideoSnippet.style.transform = `translate(15%, -100%)`;
-        } else {
-            // console.log("no pasa la ventana");
-            VideoSnippet.style.left = `${posX}px`;
-            VideoSnippet.style.top = `${posY}px`;
-            VideoSnippet.style.transform = `translate(-100%, -100%)`;
+        if (VideoSnippet !== null && videosBackground !== null) {
+            VideoSnippet.style.display = "block";
+            if (
+                posX + VideoSnippet.clientWidth + 30 <
+                videosBackground.clientWidth
+            ) {
+                VideoSnippet.style.left = `${posX}px`;
+                VideoSnippet.style.top = `${posY}px`;
+                VideoSnippet.style.transform = `translate(15%, -100%)`;
+            } else {
+                VideoSnippet.style.left = `${posX}px`;
+                VideoSnippet.style.top = `${posY}px`;
+                VideoSnippet.style.transform = `translate(-100%, -100%)`;
+            }
         }
     };
 
-    const onLeave = (ev) => {
-        VideoSnippet.style.display = "none";
+    const onLeave = () => {
+        if (VideoSnippet !== null) VideoSnippet.style.display = "none";
     };
 
     Video.forEach((video) => {
