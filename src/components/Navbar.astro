@@ -5,10 +5,10 @@ import Music from '../icons/Music.astro'
 <nav class="NavbarMain">
     <div class="NavbarBackground-Image" />
     <div class="MainMenu">
-        <a href='/' class="NavbarMain-buttons Home">
+        <a href='/' class="NavbarMain-buttons" id="Home">
             <Home />
         </a>
-        <button class="NavbarMain-buttons Music">
+        <button class="NavbarMain-buttons" id="Music">
             <Music />
         </button>
     </div>
@@ -18,8 +18,12 @@ import Music from '../icons/Music.astro'
                 <h2>VIDEOS</h2>
             </a>
             <a href='/form' class="NavbarMenu-buttons SendDemo">
-                <h2 class="Select">SUBIR DEMO</h2>
+                <h2 class="Select">ENVIAR</h2>
+            </a>
+            <a href='/demos' class="NavbarMenu-buttons Demos">
+                <h2>DEMOS</h2>
             </a>
         </div>
     </div>
+    <script src="../scripts/music.js"></script>
 </nav>
