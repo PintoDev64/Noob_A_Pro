@@ -6,6 +6,7 @@ const ZnoruxVideos = await APIResponce.json();
 
 interface VideosData {
     duration_formatted: string;
+    id: string;
     thumbnail: {
         url: string;
     };
@@ -14,26 +15,37 @@ interface VideosData {
 ---
 
 <Layout title="Nobb a Pro | Videos">
-    <div id="VideosBackground">
+    <div id="VideosBackground" transition:name="WebBody">
         {
             ZnoruxVideos.videos
                 .reverse()
-                .map(({ duration_formatted, thumbnail, title }: VideosData) => (
-                    <div class="video">
-                        <img
-                            src={thumbnail.url}
-                            alt={title}
-                            width={220}
-                            height={124}
-                        />
-                        <h5>{title}</h5>
-                        <span>{duration_formatted}</span>
-                    </div>
-                ))
+                .map(
+                    ({
+                        duration_formatted,
+                        id,
+                        thumbnail,
+                        title,
+                    }: VideosData) => (
+                        <div class="video">
+                            <img
+                                id={id}
+                                src={thumbnail.url}
+                                alt={title}
+                                width={220}
+                                height={124}
+                                class="videoImage"
+                            />
+                            <h5>{title}</h5>
+                            <span>{duration_formatted}</span>
+                        </div>
+                    ),
+                )
         }
-        <div id="VideoInformation" class="VideoInformation">
+    </div>
+    <div id="VideoInformation" class="VideoInformation">
+        <a id="VideoURL" target="_blank">
             <h1>Hola mundo</h1>
-        </div>
+        </a>
     </div>
 </Layout>
 
@@ -44,7 +56,6 @@ interface VideosData {
         backdrop-filter: blur(15px);
         padding: 15px 30px;
         width: calc(100% - 40px);
-        height: calc(100vh - 50px);
         display: flex;
         flex-wrap: wrap;
     }
@@ -54,8 +65,8 @@ interface VideosData {
         display: flex;
         flex-direction: column;
         width: 220px;
-        height: 180px;
-        margin: auto;
+        height: 160px;
+        margin: 0 auto 10px;
         color: var(--ColoredBase);
         border: none;
         background: none;
@@ -65,7 +76,11 @@ interface VideosData {
         position: relative;
         width: 220px;
         height: 124px;
-        margin: 0 0 5px 0;
+    }
+
+    .video:hover .videoImage {
+        transition: 0.2s all ease;
+        box-shadow: 0 0 10px #000000;
     }
 
     .video::after {
@@ -85,6 +100,7 @@ interface VideosData {
         width: 100%;
         margin: 5px 0 0 0;
         text-shadow: 0 0 5px #000000;
+        cursor: default;
     }
 
     .video span {
@@ -92,6 +108,7 @@ interface VideosData {
         height: 1em;
         margin: 0;
         text-shadow: 0 0 5px #000000;
+        cursor: default;
     }
 
     .VideoInformation {
