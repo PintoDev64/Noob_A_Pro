@@ -1,0 +1,155 @@
+---
+import Navbar from "../components/Navbar.astro";
+import Side from "../components/Side.astro";
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="../../public/favicon.png" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	<body>
+		<Navbar />
+		<div class="Pages">
+			<slot />
+		</div>
+	</body>
+</html>
+<Side />
+
+<style is:global>
+	:root {
+		--Navbar_BackgroundColor: #3b3c37;
+		--Navbar_Height: 50px;
+		--ColoredText: #8ec9e6;
+		--ColoredBase: #ffffff;
+	}
+
+	::-webkit-scrollbar {
+		width: 10px;
+		border: none;
+	}
+
+	/* 
+display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: calc(100vh - 50px);
+    overflow: hidden;
+    overflow-y: auto;
+*/
+
+	body {
+		margin: 0;
+		overflow-x: hidden;
+	}
+
+	/* Navbar */
+	.NavbarMain {
+		background-repeat: repeat-x;
+		background-color: var(--Navbar_BackgroundColor);
+		display: flex;
+		height: var(--Navbar_Height);
+		width: 100%;
+	}
+
+	.NavbarBackground-Image {
+		position: absolute;
+		width: 100%;
+		height: var(--Navbar_Height);
+		background-image: url(../../public/images/TopographicMap.png);
+		filter: blur(0.75px);
+		z-index: 0;
+	}
+
+	.NavbarMain-buttons {
+		width: 50px;
+	}
+
+	.NavbarMenu-buttons > h2 {
+		color: #ffffff;
+		margin: 0;
+	}
+
+	.NavbarMain-buttons,
+	.NavbarMenu-buttons {
+		height: var(--Navbar_Height);
+		background-color: transparent;
+		border: none;
+		z-index: 1;
+		display: grid;
+		place-content: center;
+	}
+
+	.MainMenu,
+	.NavbarMenu {
+		display: flex;
+		z-index: 1;
+	}
+
+	.NavbarMenu {
+		width: 100%;
+	}
+
+	.Menu-Buttons {
+		display: flex;
+		transform: translateX(-50%);
+		position: absolute;
+		left: 50%;
+	}
+
+	/* SideBar */
+
+	.Sidebar {
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: 200px;
+		height: 100vh;
+		background-color: #000000;
+		transform: translateX(75%);
+		transition: 0.2s;
+	}
+
+	.Sidebar:hover {
+		transform: translateX(0px);
+		transition: 0.2s;
+	}
+
+	.SidebarTop {
+		height: 50px;
+		display: flex;
+		align-items: center;
+		margin: 0 5px;
+	}
+
+	/* Pages */
+	.Pages {
+		display: flex;
+		flex-direction: column;
+		width: calc(100% - 40px);
+		height: calc(100vh - 50px);
+		overflow-y: auto;
+		overflow-x: hidden;
+		background-image: url(../../public/images/CS_mainmenu.webp);
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: center center;
+	}
+
+	/* Efects Select */
+
+	h2.Select {
+		color: var(--ColoredText);
+	}
+</style>
