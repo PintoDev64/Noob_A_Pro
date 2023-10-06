@@ -2,8 +2,6 @@
 import Navbar from "../components/Navbar.astro";
 import Side from "../components/Side.astro";
 
-import { ViewTransitions } from "astro:transitions";
-
 interface Props {
 	title: string;
 }
@@ -24,11 +22,10 @@ const { title } = Astro.props;
 		/>
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
-		<ViewTransitions fallback="none"/>
 	</head>
 	<body>
 		<Navbar />
-		<div class="Pages" transition:name="WebBody">
+		<div class="Pages">
 			<slot />
 		</div>
 		<Side />
@@ -37,7 +34,7 @@ const { title } = Astro.props;
 
 <style is:global>
 	:root {
-		--Navbar_BackgroundColor: #3b3c37;
+		--Navbar_BackgroundColor: #41423F;
 		--Navbar_Height: 50px;
 		--ColoredText: #8ec9e6;
 		--ColoredBase: #ffffff;
@@ -123,7 +120,7 @@ const { title } = Astro.props;
 		right: 0;
 		width: 200px;
 		height: 100vh;
-		background-color: #000000;
+		background-color: #41423F;
 		transform: translateX(75%);
 		transition: 0.2s;
 		z-index: 2;
